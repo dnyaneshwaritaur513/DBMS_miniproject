@@ -215,7 +215,7 @@ WHERE att_id = 1;
 SELECT * FROM Employee;
 SELECT * FROM Attendance;
 
--- ✅ 1. Show all employees with their Department and Designation
+
 SELECT 
     e.emp_id,
     CONCAT(e.first_name, ' ', e.last_name) AS Employee_Name,
@@ -235,10 +235,10 @@ BEGIN
     DECLARE i INT DEFAULT 1;
     DECLARE total INT;
 
-    -- Count total employees
+
     SELECT COUNT(*) INTO total FROM Employee;
 
-    -- Loop through all employee IDs
+
     WHILE i <= total DO
         SELECT CONCAT('Employee ID: ', emp_id, ' | Name: ', first_name, ' ', last_name) AS Employee_Info
         FROM Employee
@@ -249,7 +249,7 @@ END //
 
 DELIMITER ;
 
---  Call the procedure to display result
+
 CALL Show_Employee_Names();
 
 
@@ -263,14 +263,14 @@ BEGIN
     DECLARE empId INT;
     DECLARE projId INT;
 
-    -- Declare cursor for Employee_Project table
+    
     DECLARE ep_cursor CURSOR FOR 
         SELECT emp_id, proj_id FROM Employee_Project;
 
-    -- Handler for end of cursor
+    
     DECLARE CONTINUE HANDLER FOR NOT FOUND SET done = 1;
 
-    -- Open cursor
+    
     OPEN ep_cursor;
 
     read_loop: LOOP
